@@ -1,0 +1,61 @@
+---
+title: "Example1"
+author: "John Gamble"
+date: "2022-12-01"
+output: html_document
+---
+
+
+
+# This is a header - it's outside the code block
+
+```{r load-data, message=FALSE} 
+library(tidyverse)
+library(kableExtra)
+library(rmarkdown)
+
+# This is a comment - it is within the code block
+# Load the dataset
+pop_data <- read_csv("data/gapminder_data.csv")
+
+# Create a table with data from European countries in 2007, showing the countries
+# with the highest life expectancy on top
+euro_data_tbl <- pop_data %>%
+  filter(continent == "Europe" & year == 2007) %>%
+  select(-continent, -year) %>%
+  arrange(desc(lifeExp)) %>%
+  rename("Country" = country, "Population Size" = pop,
+         "Life Expectancy" = lifeExp, "GDP" = gdpPercap)
+
+
+```
+
+Some more text in here.
+```{r create-table, message=FALSE}
+euro_data_tbl %>%
+  kbl() %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+Here is an example of displaying HUGE tables
+
+```{r paged-table}
+paged_table(euro_data_tbl)
+```
+
+
+Challenge - adding images
+```{r challenge-add_images}
+euro_data_fig <- pop_data %>%
+  filter(continent == "Europe") %>%
+  mutate(year = as.factor(year))
+paged_table(euro_data_fig)
+
+euro_plot <- euro_data_fig %>%
+  ggplot(mapping = aes(x=year, y=lifeExp)) +
+  geom_violin() +
+  stat_summary(fun = median, geom = "point")
+# Draw 'euro_plot'
+euro_plot
+```
+

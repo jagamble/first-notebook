@@ -1,0 +1,63 @@
+---
+title: "My First Notebook"
+author: John Gamble
+date: 1 December 2022 
+output:
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+# Heading 1
+This is just normal text. This is **bold**. These are *italics*.
+
+<!-- Example of a comment -->
+<!-- Another example of a comment -->
+\
+
+Other text here.
+
+## Heading 2 {#markdown-header}
+A few words here
+
+### Heading 3
+More text here and [this is the link](#markdown-header).
+
+This is a link to an [external website](http://www.google.com).
+
+Footnotes
+\
+This text has a footnote[^1]
+
+[^1]: This is my footnote text.
+
+### Lists
+1. Item 1
+2. Item 2
+3. Item 3
+    a. Item 3a
+        i. Item 3ai
+4. Item 4
+
+### Inserting Images
+
+![R Logo](img/r_logo.png)
+
+
+![Reproducibility image](img/reproducibility_image.jpeg)
+
+
+Add a block here
+
+> Here is the block
+
+```
+print("Hello world")
+x <- 1
+```
+
+
+
+
+
+
